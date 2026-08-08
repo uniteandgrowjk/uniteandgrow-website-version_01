@@ -1,0 +1,9 @@
+# Saubere URLs ohne .html (Rewrite, Status 200 = URL bleibt stehen)
+/impressum     /impressum.html     200
+/datenschutz   /datenschutz.html   200
+/agb           /agb.html           200
+
+# Alte .html-Adressen dauerhaft auf die saubere URL umleiten
+/impressum.html     /impressum      301!
+/datenschutz.html   /datenschutz    301!
+/agb.html           /agb            301!

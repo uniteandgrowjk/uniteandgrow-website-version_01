@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nightblue:#0A2841;--midblue:#005078;--skyblue:#46A0DC;
+  --applegreen:#C8C800;--light:#FAF9F5;--white:#FFFFFF;
+  --font:"Outfit","Inter",Arial,sans-serif;
+  --shadow:0 6px 30px rgba(10,40,65,.10);
+  --t:.25s cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:16px;}
+body{font-family:var(--font);background:var(--light);color:var(--nightblue);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--midblue);}
+a:hover{color:var(--skyblue);}
+.wrap{max-width:900px;margin:0 auto;padding:0 26px;}
+.head{background:radial-gradient(ellipse 145% 90% at 58% 30%,#154868,#0A2841);color:#fff;padding:54px 0 42px;}
+.head .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--skyblue);margin-bottom:14px;}
+.head .eyebrow::before{content:"";width:28px;height:3px;background:var(--applegreen);border-radius:2px;}
+.head h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:900;letter-spacing:-.025em;line-height:1.08;}
+.head p{font-weight:300;color:rgba(250,249,245,.9);margin-top:14px;max-width:620px;font-size:1.05rem;}
+.bar-wrap{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.bar{flex:1;min-width:220px;height:12px;background:rgba(255,255,255,.15);border-radius:8px;overflow:hidden;}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--skyblue),var(--applegreen));border-radius:8px;transition:width .5s cubic-bezier(.2,.7,.2,1);}
+.bar-num{font-weight:800;font-size:1.05rem;color:#fff;white-space:nowrap;}
+.bar-num b{color:var(--applegreen);}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+.tbtn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-weight:700;font-size:.86rem;padding:10px 20px;border-radius:100px;border:2px solid rgba(255,255,255,.4);background:transparent;color:#fff;cursor:pointer;transition:var(--t);}
+.tbtn:hover{background:rgba(255,255,255,.12);}
+.tbtn.primary{background:var(--applegreen);border-color:var(--applegreen);color:var(--nightblue);}
+.tbtn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(200,200,0,.3);}
+main{padding:44px 0 70px;}
+.sec{background:var(--white);border-radius:18px;box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden;border:1px solid rgba(10,40,65,.05);}
+.sec-head{display:flex;align-items:center;gap:16px;padding:22px 26px;cursor:pointer;user-select:none;}
+.sec-ico{flex-shrink:0;width:46px;height:46px;border-radius:13px;background:var(--nightblue);color:var(--applegreen);display:flex;align-items:center;justify-content:center;}
+.sec-head h2{font-size:1.16rem;font-weight:800;letter-spacing:-.01em;flex:1;}
+.sec-count{font-size:.82rem;font-weight:700;color:var(--midblue);background:rgba(0,80,120,.08);padding:5px 12px;border-radius:100px;white-space:nowrap;}
+.sec-count.done{background:var(--applegreen);color:var(--nightblue);}
+.sec-body{padding:0 26px 10px;}
+.item{display:flex;gap:14px;padding:13px 0;border-top:1px solid rgba(10,40,65,.07);cursor:pointer;align-items:flex-start;}
+.item:first-child{border-top:none;}
+.box{flex-shrink:0;width:24px;height:24px;border-radius:7px;border:2px solid rgba(0,80,120,.35);background:#fff;display:flex;align-items:center;justify-content:center;transition:var(--t);margin-top:1px;}
+.box svg{width:15px;height:15px;opacity:0;transform:scale(.5);transition:var(--t);}
+.item.checked .box{background:var(--applegreen);border-color:var(--applegreen);}
+.item.checked .box svg{opacity:1;transform:none;}
+.item .txt{flex:1;}
+.item .txt b{display:block;font-weight:600;font-size:.98rem;transition:var(--t);}
+.item.checked .txt b{color:rgba(10,40,65,.45);text-decoration:line-through;}
+.item .txt span{display:block;font-size:.85rem;font-weight:300;color:rgba(10,40,65,.66);margin-top:2px;}
+.item .txt span a{font-weight:500;}
+.foot{text-align:center;color:rgba(10,40,65,.55);font-size:.85rem;margin-top:30px;line-height:1.7;}
+.foot b{color:var(--nightblue);}
+@media print{
+  .toolbar,.sec-count{display:none;}
+  .head{background:var(--nightblue)!important;}
+  .sec{box-shadow:none;border:1px solid #ccc;break-inside:avoid;}
+  body{background:#fff;}
+}
+@media(max-width:560px){.head{padding:40px 0 32px;}main{padding:30px 0 50px;}.sec-head{padding:18px;}.sec-body{padding:0 18px 8px;}}
+</style>
+</helmet>
+<header class="head">
+  <div class="wrap">
+    <span class="eyebrow">Qualitätssicherung</span>
+    <h1>{{ title }}</h1>
+    <p>{{ intro }}</p>
+    <div class="bar-wrap">
+      <div class="bar"><span style="width:{{ pct }}%"></span></div>
+      <div class="bar-num"><b>{{ doneCount }}</b> / {{ totalCount }} erledigt</div>
+    </div>
+    <div class="toolbar">
+      <button class="tbtn primary" onClick="{{ onPrint }}">Als PDF drucken</button>
+      <button class="tbtn" onClick="{{ onReset }}">Alles zurücksetzen</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="7">
+      <div class="sec">
+        <div class="sec-head" onClick="{{ sec.toggle }}">
+          <span class="sec-ico"><span innerHTML="{{ sec.icon }}"></span></span>
+          <h2>{{ sec.title }}</h2>
+          <span class="sec-count {{ sec.countClass }}">{{ sec.label }}</span>
+        </div>
+        <div class="sec-body">
+          <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="4">
+            <div class="item {{ it.cls }}" onClick="{{ it.toggle }}">
+              <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0A2841" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span>
+              <span class="txt"><b>{{ it.title }}</b><span innerHTML="{{ it.desc }}"></span></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    <p class="foot">{{ footer }}</p>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { checked: {}, open: {} };
+
+  componentDidMount(){
+    try {
+      var saved = localStorage.getItem('ug-launch-checklist');
+      if(saved) this.setState({ checked: JSON.parse(saved) });
+    } catch(e){}
+  }
+
+  data(){
+    return [
+      { id:'tech', title:'Technisches Fundament', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>', items:[
+        ['HTTPS aktiv, kein Mixed-Content','Alle Ressourcen (Bilder, Skripte, Fonts) über https:// laden. Netlify liefert HTTPS automatisch.'],
+        ['robots.txt im Root','Erlaubt Crawling von CSS/JS und listet die Sitemap. KI-Crawler (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) ausdrücklich erlauben.'],
+        ['sitemap.xml vorhanden und eingereicht','Alle Seiten enthalten, in der Google Search Console eingereicht.'],
+        ['Selbstreferenzierende Canonical-Tags','Jede Seite mit absoluter Canonical-URL, um Duplicate Content zu vermeiden.'],
+        ['301-Weiterleitungen gesetzt','www ↔ ohne www und http → https auf eine Variante leiten (in Netlify).'],
+        ['Alle Links funktionieren','Keine toten Links; Unterseiten (Impressum, Datenschutz, AGB) und PDF erreichbar.'],
+        ['Eigene 404-Fehlerseite','Statt Netlify-Standard eine gestaltete 404-Seite mit Rücklink zur Startseite.'],
+        ['Security-Header gesetzt','Netlify _headers-Datei: u.a. X-Content-Type-Options, Referrer-Policy, HSTS.']
+      ]},
+      { id:'legal', title:'Rechtliche Pflichten (DE)', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 4.5-3.2 8.3-8 9.5C7.2 20.3 4 16.5 4 12V7l8-4z"/></svg>', items:[
+        ['Impressum vollständig','Anbieter, Vertretungsberechtigter, Kontakt, Registereintrag, USt-IdNr. gemäß § 5 DDG.'],
+        ['Datenschutzerklärung aktuell','Alle eingesetzten Dienste (Hosting, Analytics, CRM, KI-Tools) mit Rechtsgrundlage nach DSGVO benannt.'],
+        ['AGB verlinkt','Falls im Einsatz: im Footer erreichbar und inhaltlich aktuell.'],
+        ['Cookie-Consent-Banner (DSGVO)','Vor nicht-notwendigen Cookies Einwilligung einholen; „Ablehnen" gleichwertig zu „Akzeptieren"; Consent Mode v2 aktiv.'],
+        ['Bild- und Schriftrechte geklärt','Nur eigene oder lizenzierte Fotos, Icons und Fonts verwenden.'],
+        ['Kontaktdaten konsistent','Firmenname, Adresse, Telefon und eine einheitliche E-Mail über alle Seiten identisch.'],
+        ['Fonts lokal gehostet','Google Fonts lokal einbinden statt vom CDN — vermeidet IP-Übertragung an Google (DE-Datenschutz).'],
+        ['Externe Ressourcen DSGVO-konform','Alle eingebundenen Drittdienste in der Datenschutzerklärung benannt.']
+      ]},
+      { id:'perf', title:'Performance & Core Web Vitals', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L5 13h6l-1 9 9-12h-6l1-8z"/></svg>', items:[
+        ['LCP unter 2,5 s','Größtes Element (Hero) per Preload + fetchpriority laden, kritisches CSS inline.'],
+        ['CLS unter 0,1','Feste Größen bzw. aspect-ratio für Bilder, damit nichts nachträglich springt.'],
+        ['INP unter 200 ms','Schlankes JavaScript, keine unnötigen Fremdskripte.'],
+        ['Bilder optimiert','Moderne Formate (WebP/AVIF), komprimiert, Lazy-Loading außerhalb des ersten Viewports.'],
+        ['Lighthouse ≥ 90','Performance, SEO, Accessibility und Best Practices je über 90 (PageSpeed Insights).']
+      ]},
+      { id:'mobile', title:'Mobil & Barrierefreiheit', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>', items:[
+        ['Responsiv auf allen Geräten','Smartphone, Tablet und Desktop geprüft, kein horizontales Scrollen.'],
+        ['Touch-Ziele ≥ 48px','Buttons und Links mit genug Abstand für Finger.'],
+        ['Sichtbarer Tastatur-Fokus & Skip-Link','Fokus-Ringe vorhanden, „Zum Inhalt springen" am Seitenanfang.'],
+        ['Alt-Texte für alle Inhaltsbilder','Beschreibend; rein dekorative Bilder bewusst mit leerem alt.'],
+        ['Ausreichende Farbkontraste','Text auf Hintergrund erfüllt WCAG AA.'],
+        ['Cross-Browser getestet','Chrome, Safari, Firefox und Edge geprüft (Safari verhält sich oft anders).']
+      ]},
+      { id:'seo', title:'On-Page SEO', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>', items:[
+        ['Eindeutiger Title je Seite','Max. ~60 Zeichen, mit Kernbegriff und Marke.'],
+        ['Meta-Description je Seite','Max. ~155 Zeichen, einladend formuliert, kein Duplikat.'],
+        ['Genau ein H1 pro Seite','Klare, logische H2/H3-Struktur darunter.'],
+        ['Keyword-Fokus ohne Überschneidung','Jede Seite auf ein Thema ausgerichtet, keine Kannibalisierung.'],
+        ['Open Graph & Twitter Cards','Vorschaubild und -text beim Teilen (LinkedIn etc.) je Seite gesetzt.'],
+        ['Social-Preview real getestet','Mit LinkedIn Post Inspector und Google Rich Results Test geprüft, nicht nur eingebaut.'],
+        ['Favicon vorhanden','Marken-Favicon wird im Browser-Tab angezeigt.'],
+        ['Finale Korrekturlesung','Rechtschreibung, Namen, Preise und Zahlen final geprüft.']
+      ]},
+      { id:'geo', title:'KI-Suche (GEO/AEO) & Schema', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 0 0 18M12 3a15 15 0 0 1 0 18M3 12h18"/></svg>', items:[
+        ['Strukturierte Daten (JSON-LD)','Organization + sameAs, LocalBusiness mit Standort, FAQPage, BreadcrumbList auf Unterseiten.'],
+        ['Klare Antworten zuerst','Jeder Abschnitt beginnt mit einer direkten Aussage — gut für KI-Antworten.'],
+        ['Konsistente Fakten','Firmenname, Standort und Leistungen überall identisch formuliert.'],
+        ['FAQ mit echten Nutzerfragen','Frage-Antwort-Format, das reale Suchanfragen abbildet.'],
+        ['llms.txt hinterlegt','Kurzprofil für KI-Crawler im Root der Seite.']
+      ]},
+      { id:'analytics', title:'Tracking & Nach dem Launch', icon:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-3"/></svg>', items:[
+        ['GTM & GA4 eingebaut und veröffentlicht','Container publiziert, GA4-Tag feuert nur nach Einwilligung (Consent Mode).'],
+        ['Echtzeit-Bericht zeigt Traffic','In GA4 prüfen, dass Seitenaufrufe ankommen.'],
+        ['Google Search Console eingerichtet','Property angelegt, Inhaberschaft bestätigt, Sitemap eingereicht, GA4 verknüpft.'],
+        ['Testseite/Preview vor Livegang geprüft','Auf Netlify-Preview alles gegengecheckt, dann veröffentlichen.'],
+        ['Backup / Rollback-Weg bekannt','Frühere Version bei Bedarf in Netlify per Klick wiederherstellbar.'],
+        ['Formulare & Terminbuchung getestet','Kontaktformular kommt an, Google-Calendar-Buchung und alle CTA-Buttons funktionieren.'],
+        ['E-Mail-Adresse empfängt','Test-Mail an die angegebene Adresse (info@ / hello@) kommt an.'],
+        ['Conversion-Events in GA4','Wichtige Klicks (z. B. „Erstgespräch vereinbaren") als Conversion markiert.']
+      ]}
+    ];
+  }
+
+  toggleItem(key){
+    var c = Object.assign({}, this.state.checked);
+    c[key] = !c[key];
+    this.setState({ checked: c });
+    try { localStorage.setItem('ug-launch-checklist', JSON.stringify(c)); } catch(e){}
+  }
+  toggleSec(id){
+    var o = Object.assign({}, this.state.open);
+    o[id] = !o[id];
+    this.setState({ open: o });
+  }
+  reset(){
+    this.setState({ checked: {} });
+    try { localStorage.removeItem('ug-launch-checklist'); } catch(e){}
+  }
+
+  renderVals(){
+    var self = this;
+    var data = this.data();
+    var total = 0, done = 0;
+    var sections = data.map(function(sec){
+      var items = sec.items.map(function(pair, i){
+        var key = sec.id + '-' + i;
+        var isChecked = !!self.state.checked[key];
+        total++; if(isChecked) done++;
+        return {
+          title: pair[0], desc: pair[1],
+          cls: isChecked ? 'checked' : '',
+          toggle: function(e){ e.stopPropagation(); self.toggleItem(key); }
+        };
+      });
+      var secDone = items.filter(function(x){return x.cls==='checked';}).length;
+      var allDone = secDone === items.length;
+      return {
+        title: sec.title, icon: sec.icon, items: items,
+        label: secDone + '/' + items.length,
+        countClass: allDone ? 'done' : '',
+        toggle: function(){ self.toggleSec(sec.id); }
+      };
+    });
+    return {
+      title: 'Launch-Checkliste für unite & grow',
+      intro: 'Diese Liste vor jeder Veröffentlichung durchgehen. Häkchen werden im Browser gespeichert und bleiben beim nächsten Besuch erhalten.',
+      sections: sections,
+      doneCount: done, totalCount: total,
+      pct: total ? Math.round(done/total*100) : 0,
+      onPrint: function(){ window.print(); },
+      onReset: function(){ if(confirm('Alle Häkchen zurücksetzen?')) self.reset(); },
+      footer: 'unite & grow GmbH · Interne Qualitätssicherung. Häkchen liegen lokal in diesem Browser — für eine frische Prüfung „Alles zurücksetzen" nutzen.'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# unite & grow GmbH — robots.txt
+User-agent: *
+Allow: /
+
+# CSS/JS-Rendering ausdruecklich erlauben
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# KI-Crawler ausdruecklich erlauben
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.uniteandgrow.de/sitemap.xml
